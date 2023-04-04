@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataKelasController;
+use App\Http\Controllers\DataSiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/auth', function(){
+    return view('loginadmin');
+});
+
+Route::get('/dashboard',[DashboardController::class, 'index']);
+Route::get('/kelas',[DataKelasController::class, 'index']);
+Route::get('/siswa', [DataSiswaController::class, 'index']);
+Route::get('/profile',[ProfileController::class, 'index']);
