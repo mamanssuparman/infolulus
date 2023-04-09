@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataKelasController;
@@ -18,14 +19,13 @@ use App\Http\Controllers\DataSiswaController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserController::class, 'index']);
 
 Route::get('/auth',[AuthController::class, 'index']);
 Route::post('/auth/check',[AuthController::class, 'check']);
 Route::post('/auth/logout', [AuthController::class, 'logout']);
-
+Route::post('/cekData',[UserController::class, 'check']);
+Route::post('/downloadFile', [UserController::class, 'download']);
 Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard',[DashboardController::class, 'index']);
     Route::get('/kelas',[DataKelasController::class, 'index']);
