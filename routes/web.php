@@ -27,5 +27,15 @@ Route::get('/auth', function(){
 
 Route::get('/dashboard',[DashboardController::class, 'index']);
 Route::get('/kelas',[DataKelasController::class, 'index']);
+Route::post('/kelas/AddKelas',[DataKelasController::class, 'addkelas']);
+Route::post('/kelas/Hapus',[DataKelasController::class, 'hapus']);
+Route::post('kelas/Ubah',[DataKelasController::class, 'ubahDataKelas']);
 Route::get('/siswa', [DataSiswaController::class, 'index']);
+Route::get('/siswa/Add',[DataSiswaController::class, 'addSiswa']);
+Route::post('/siswa/simpan',[DataSiswaController::class, 'simpan']);
+Route::post('/siswa/Hapus',[DataSiswaController::class, 'hapus']);
+Route::get('/siswa/edit/{id}',[DataSiswaController::class, 'edit']);
+Route::post('/siswa/{id}/update',[DataSiswaController::class, 'update']);
 Route::get('/profile',[ProfileController::class, 'index']);
+Route::post('/getDataKelas',[DataKelasController::class, 'getDataKelas']);
+Route::post('/getDataSiswa', [DataSiswaController::class, 'getDataSiswa']);

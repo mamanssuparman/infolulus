@@ -19,7 +19,8 @@
     <!-- Vendor CSS Files -->
     <link href="/adminassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/adminassets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/adminassets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/adminassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/adminassets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 
     <!-- Template Main CSS File -->
     <link href="/adminassets/css/style.css" rel="stylesheet">

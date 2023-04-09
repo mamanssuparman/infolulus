@@ -117,11 +117,13 @@
 
   <!-- Vendor JS Files -->
   <script src="/adminassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/adminassets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="/adminassets/vendor/tinymce/tinymce.min.js"></script>
   <!-- Template Main JS File -->
-  <script src="/adminassets/js/main.js"></script>
+  {{-- <script src="/adminassets/js/main.js"></script> --}}
   <script src="/adminassets/js/jquery.min.js"></script>
+  <script src="/adminassets/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="/adminassets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="/adminassets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="/adminassets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
   @stack('addon-js')
 </body>
 
