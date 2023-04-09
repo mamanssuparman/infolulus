@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataKelasController;
@@ -21,21 +22,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/auth', function(){
-    return view('loginadmin');
-});
+Route::get('/auth',[AuthController::class, 'index']);
+Route::post('/auth/check',[AuthController::class, 'check']);
+Route::post('/auth/logout', [AuthController::class, 'logout']);
 
-Route::get('/dashboard',[DashboardController::class, 'index']);
-Route::get('/kelas',[DataKelasController::class, 'index']);
-Route::post('/kelas/AddKelas',[DataKelasController::class, 'addkelas']);
-Route::post('/kelas/Hapus',[DataKelasController::class, 'hapus']);
-Route::post('kelas/Ubah',[DataKelasController::class, 'ubahDataKelas']);
-Route::get('/siswa', [DataSiswaController::class, 'index']);
-Route::get('/siswa/Add',[DataSiswaController::class, 'addSiswa']);
-Route::post('/siswa/simpan',[DataSiswaController::class, 'simpan']);
-Route::post('/siswa/Hapus',[DataSiswaController::class, 'hapus']);
-Route::get('/siswa/edit/{id}',[DataSiswaController::class, 'edit']);
-Route::post('/siswa/{id}/update',[DataSiswaController::class, 'update']);
-Route::get('/profile',[ProfileController::class, 'index']);
+Route::middleware(['admin'])->group(function(){
+    Route::get('/dashboard',[DashboardController::class, 'index']);
+    Route::get('/kelas',[DataKelasController::class, 'index']);
+    Route::post('/kelas/AddKelas',[DataKelasController::class, 'addkelas']);
+    Route::post('/kelas/Hapus',[DataKelasController::class, 'hapus']);
+    Route::post('kelas/Ubah',[DataKelasController::class, 'ubahDataKelas']);
+    Route::get('/siswa', [DataSiswaController::class, 'index']);
+    Route::get('/siswa/Add',[DataSiswaController::class, 'addSiswa']);
+    Route::post('/siswa/simpan',[DataSiswaController::class, 'simpan']);
+    Route::post('/siswa/Hapus',[DataSiswaController::class, 'hapus']);
+    Route::get('/siswa/edit/{id}',[DataSiswaController::class, 'edit']);
+    Route::post('/siswa/{id}/update',[DataSiswaController::class, 'update']);
+    Route::get('/profile',[ProfileController::class, 'index']);
+});
 Route::post('/getDataKelas',[DataKelasController::class, 'getDataKelas']);
 Route::post('/getDataSiswa', [DataSiswaController::class, 'getDataSiswa']);

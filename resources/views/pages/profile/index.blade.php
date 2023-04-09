@@ -7,8 +7,8 @@
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="/adminassets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <h3>Maman Suparman</h3>
-                        <h5>CEO Omen Soft</h5>
+                        <h3>{{ auth()->user()->name }}</h3>
+                        <h5>{{ auth()->user()->job }}</h5>
                         <div class="social-links mt-2">
                             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -45,46 +45,43 @@
 
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                 <h5 class="card-title">About</h5>
-                                <p class="small fst-italic">Nama saya adalah Maman Suparman, ST atau lebih sering dikenal
-                                    dengan <strong> Omen </strong>, saya saat ini menjadi seorang freelancer Software
-                                    Developer dan juga sebagai CEO pada sebuah Software House yaitu OmenSoft</p>
+                                <p class="small fst-italic">{{ auth()->user()->about }}</p>
 
                                 <h5 class="card-title">Profile Details</h5>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                                    <div class="col-lg-9 col-md-8">Maman Suparman, ST</div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->name }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Perusahaan</div>
-                                    <div class="col-lg-9 col-md-8">OmenSoft, </div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->perusahaan }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Job</div>
-                                    <div class="col-lg-9 col-md-8">Full Stack Web Developer</div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->job }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Country</div>
-                                    <div class="col-lg-9 col-md-8">Indonesia</div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->country }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Address</div>
-                                    <div class="col-lg-9 col-md-8">Dusun Cikawung RT. 28 RW. 07 Desa Cintaratu Kecamatan
-                                        Lakbok Kabupaten Ciamis</div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->address }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Phone</div>
-                                    <div class="col-lg-9 col-md-8">+62 82240 6000 70</div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->phone }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Email</div>
-                                    <div class="col-lg-9 col-md-8">omenartcorp@gmail.com</div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->email }}</div>
                                 </div>
 
                             </div>
