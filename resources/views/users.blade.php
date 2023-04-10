@@ -90,11 +90,9 @@
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <h3>SMK N 3 Banjar</h3>
                         <p>
-                            A108 Adam Street <br />
-                            New York, NY 535022<br />
-                            United States <br /><br />
-                            <strong>Phone:</strong> +1 5589 55488 55<br />
-                            <strong>Email:</strong> info@example.com<br />
+                            JL. JULAENI, RT/RW 5/2, Dsn. LANGENSARI, Ds./Kel Langensari, Kec. Langensari, Kota Banjar, Prop. Jawa Barat <br/>
+                            <strong>Phone:</strong> 02652734141<br />
+                            <strong>Email:</strong> smkn3banjar@ymail.com<br />
                         </p>
                     </div>
 
