@@ -27,14 +27,6 @@
 
     <!-- Template Main CSS File -->
     <link href="/userassets/css/style.css" rel="stylesheet" />
-
-    <!-- =======================================================
-  * Template Name: Butterfly
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/butterfly-free-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -43,8 +35,6 @@
         <div class="container d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo"><img src="/userassets/img/logo.png" alt="Logo SMK Negeri 3 Banjar"
                     title="SMK Negeri 3 Banjar" class="img-fluid" /></a>
-            <!-- Uncomment below if you prefer to use text as a logo -->
-            <!-- <h1 class="logo"><a href="index.html">Butterfly</a></h1> -->
 
             <nav id="navbar" class="navbar">
 
@@ -167,7 +157,6 @@
                 nisn: $('#textNisn').val()
             },
             success: function(res){
-                console.log(res)
                 if(res.statusCode == 404){
                     $('#getDataDownload').html('<h3 class="text-danger mt-3">Data yang anda cari tidak ditemukan.!</h3>')
                 }
