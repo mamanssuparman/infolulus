@@ -10,7 +10,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Quicksand", sans-serif;
   color: #444444;
 }
 
@@ -30,7 +30,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Dosis", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -1508,16 +1508,26 @@ section {
 }
 .tombol-cek{
   background: #49b5e7;
-  font-family: "Dosis", sans-serif;
+  font-family: "Quicksand", sans-serif;
   padding: 8px 28px;
   margin-top: 25px;
   border-radius: 5px;
-  color:white;
   text-transform: uppercase;
   display: inline-block;
   transition: 0.5s;
   outline: auto;
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
 }
 .tombol-cek:hover{
-  background-color:#76c7ed ;
+  color: #fff;
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
 }
+/* .tombol-cek:focus{
+  color: #fff;
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+  box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
+} */

@@ -37,7 +37,7 @@
   ======================================================== -->
 </head>
 
-<body>
+<body style="font-family: Quicksand">
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
@@ -59,13 +59,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h2>
-                        Silahkan masukkan NISN (Nomor Induk Siswa Nasional) untuk mengecek informasi ya!
+                    <h2 style="font-family: Poppins">
+                        Silahkan masukkan NISN (Nomor Induk Siswa Nasional) untuk mengecek informasi!
                     </h2>
                     <div class="form-group mt-3">
                         @csrf
-                        <input type="text" name="textNisn" id="textNisn" class="form-control"
-                            placeholder="Ex : 2021.19.00.000">
+                        <input type="number" name="textNisn" id="textNisn" class="form-control"
+                            placeholder="Contoh : 1987316249">
                     </div>
                     <div>
                         <button href="#about" class="tombol-cek" id="tombol-check"> <i class="bi-search"></i> Cari</button>
@@ -81,17 +81,54 @@
         </div>
     </section>
     <!-- End Hero -->
+  
+  <!-- Belum Isi NISN -->
+  <div class="modal fade" id="belumIsiNisn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold text-secondary" id="staticBackdropLabel" style="font-family: Poppins">Peringatan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <b> Anda belum menuliskan NISN! </b> <br>
+           Silahkan masukkan NISN yang valid!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OKE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Not Found NISN -->
+  <div class="modal fade" id="notFound" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold text-secondary" id="staticBackdropLabel" style="font-family: Poppins">Peringatan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <b> Data yang Anda cari tidak ditemukan! </b> <br> Silahkan masukkan NISN yang valid!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OKE</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>SMK N 3 Banjar</h3>
+                    <div class="col-lg-4 col-md-6 footer-contact">
+                        <h3 class="fw-bold" style="font-family: Poppins">SMK Negeri 3 Banjar</h3>
                         <p>
-                            JL. JULAENI, RT/RW 5/2, Dsn. LANGENSARI, Ds./Kel Langensari, Kec. Langensari, Kota Banjar, Prop. Jawa Barat <br/>
-                            <strong>Phone:</strong> 02652734141<br />
+                            JL. JULAENI, RT/RW 5/2, Dsn. LANGENSARI, Ds./Kel Langensari, Kec. Langensari, Kota Banjar, Prov. Jawa Barat <br/>
+                            <strong>Telepon:</strong> 02652734141<br />
                             <strong>Email:</strong> smkn3banjar@ymail.com<br />
                         </p>
                     </div>
@@ -105,7 +142,7 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Sosial Media Kami</h4>
+                        <h4 style="font-family: Poppins" class="fw-bold">Sosial Media Kami</h4>
                         <p>
                             Di bawah ini merupakan link sosial media kami
                         </p>
@@ -129,7 +166,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/butterfly-free-bootstrap-theme/ -->
-                Designed & template by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                {{-- Designed & template by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
             </div>
         </div>
     </footer>
@@ -156,7 +193,8 @@
     $('#tombol-check').on('click', function(){
         let textNisn = $('#textNisn').val()
         if(textNisn == ""){
-            $('#getDataDownload').html('<h3 class="text-danger mt-3">Anda belum menuliskan NISN</h3>')
+            // $('#getDataDownload').html('<h3 class="text-danger mt-3">Anda belum menuliskan NISN</h3>')
+            $('#belumIsiNisn').modal('show')
         }else {
             $.ajax({
             url: baseU +'/cekData',
@@ -169,20 +207,29 @@
             success: function(res){
                 console.log(res)
                 if(res.statusCode == 404){
-                    $('#getDataDownload').html('<h3 class="text-danger mt-3">Data yang anda cari tidak ditemukan.!</h3>')
+                    // $('#getDataDownload').html('<h3 class="text-danger mt-3">Data yang anda cari tidak ditemukan.!</h3>')
+                    $('#notFound').modal('show')
                 }
                 if(res.statusCode == 200){
                     $('#getDataDownload').html(`
-                        <div class="row">
-                            <table class="table table-responsive">
+                        <div class="row my-3">
+                            <table class="table table-responsive table-borderless">
                                 <tr>
-                                    <td>NISN</td><td><div id="nisnAnda">${res.data.nisn}</div></td>
+                                    <div class="row">
+                                       <td class="text-end col-5 offset-1 fw-bold">NISN</td>  
+                                       <td class="col-1 text-center fw-bold" style="width: 1px">:</td>
+                                       <td class="text-start col-6"><div id="nisnAnda">${res.data.nisn}</div></td>  
+                                    </div>
                                 </tr>
                                 <tr>
-                                    <td>Nama</td><td><div id="namaAnda">${res.data.namasiswa}</div></td>
+                                    <div class="row">
+                                       <td class="text-end col-5 offset-1 fw-bold">Nama Lengkap</td>   
+                                       <td class="col-1 text-center fw-bold" style="width: 1px">:</td>  
+                                       <td class="col-6 text-start"><div id="namaAnda">${res.data.namasiswa}</div></td>  
+                                    </div>
                                 </tr>
-                                <tr>
-                                    <td colspan="2"><a href="{{ asset('surat-lulus/${res.data.suratlulus}') }}" class="btn btn-sm btn-outline-primary" download><i class="bi bi-download"></i> Download Surat Keterangan</a></td>
+                                <tr class="pt-3">
+                                    <td colspan="3" class="text-center"><a href="{{ asset('surat-lulus/${res.data.suratlulus}') }}" class="btn btn-sm btn-outline-primary" download><i class="bi bi-download me-2 ms-1"></i> Download Surat Keterangan</a></td>
                                 </tr>
                             </table>
                         </div>
