@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Crypt;
 
 class DataSiswaController extends Controller
@@ -174,5 +176,11 @@ class DataSiswaController extends Controller
             Siswa::where('id', Crypt::decrypt($request->id))->update($dataUpdate);
             return redirect('/siswa')->with('success', 'Data siswa berhasil di perbaharui');
         }
+    }
+    public function importDataSiswa(Request $request)
+    {
+        $file = $request->importexcel;
+        Excel::import(new SiswaImport, $file);
+        return redirect('/siswa')->with('success','Data berhasil di upload');
     }
 }

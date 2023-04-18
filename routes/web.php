@@ -33,6 +33,7 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/kelas/Hapus',[DataKelasController::class, 'hapus']);
     Route::post('kelas/Ubah',[DataKelasController::class, 'ubahDataKelas']);
     Route::get('/siswa', [DataSiswaController::class, 'index']);
+    Route::post('/siswa/import-data',[DataSiswaController::class, 'importDataSiswa']);
     Route::get('/siswa/Add',[DataSiswaController::class, 'addSiswa']);
     Route::post('/siswa/simpan',[DataSiswaController::class, 'simpan']);
     Route::post('/siswa/Hapus',[DataSiswaController::class, 'hapus']);

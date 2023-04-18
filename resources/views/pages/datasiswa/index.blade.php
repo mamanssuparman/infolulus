@@ -9,6 +9,7 @@
                     <div class="card-header">
                         <a href="/siswa/Add" class="btn btn-outline-primary btn-md"><i class="bi bi-plus-circle"></i> Tambah Data
                             Siswa</a>
+                        <button onclick="showModalImport()" class="btn btn-outline-success btn-md"><i class="bi bi-download"></i> Import Data Siswa</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -24,19 +25,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- <tr>
-                                        <td>1</td>
-                                        <td>123456</td>
-                                        <td>Maman Suparman</td>
-                                        <td>XII RPL 1</td>
-                                        <td>Lulus</td>
-                                        <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm"><i
-                                                    class="bi bi-card-checklist"></i></button>
-                                            <button type="button" class="btn btn-outline-danger btn-sm"><i
-                                                    class="bi bi-trash2"></i></button>
-                                        </td>
-                                    </tr> --}}
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -63,6 +52,33 @@
             </div>
           </div>
         </div>
+    </div>
+    {{-- Modal Import Siswa --}}
+    <div class="modal fade" id="modalImport" tabindex="-1">
+        <form action="/siswa/import-data" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-exclamation-triangle"></i> Import Data Siswa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    <label for="">Import data siswa</label>
+                    <input type="file" name="importexcel" id="importexcel" class="form-control" required>
+                    <hr>
+                    <small class="text-danger">Import data siswa sesuai dengan format yang sudah di tentukan</small>
+                    <hr>
+                    <a href="{{ asset('format-import-siswa.xlsx') }}" class="btn btn-outline-primary btn-xs"><i class="bi bi-download"></i> Download format di sini.!</a>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Close</button>
+                <button type="submit" class="btn btn-primary" ><i class="bi bi-check2-circle"></i> Ya Import</button>
+                </div>
+            </div>
+            </div>
+        </form>
     </div>
 @endsection
 @push('addon-js')
@@ -159,6 +175,9 @@
                     table.ajax.reload(null, false)
                 }
             })
+        }
+        function showModalImport(){
+            $('#modalImport').modal('show')
         }
 </script>
 @endpush
