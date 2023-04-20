@@ -33,7 +33,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo"><img src="/userassets/img/logo.png" alt="Logo SMK Negeri 3 Banjar"
+            <a href="/" class="logo"><img src="/userassets/img/logo.png" alt="Logo SMK Negeri 3 Banjar"
                     title="SMK Negeri 3 Banjar" class="img-fluid" /></a>
 
             <nav id="navbar" class="navbar">
