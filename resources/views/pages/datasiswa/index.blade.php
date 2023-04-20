@@ -10,6 +10,7 @@
                         <a href="/siswa/Add" class="btn btn-outline-primary btn-md"><i class="bi bi-plus-circle"></i> Tambah Data
                             Siswa</a>
                         <button onclick="showModalImport()" class="btn btn-outline-success btn-md"><i class="bi bi-download"></i> Import Data Siswa</button>
+                        <a href="{{ url('') }}/siswa/export" class="btn btn-outline-success btn-md"><i class="bi bi-upload"></i> Export Data Siswa</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

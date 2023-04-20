@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -182,5 +183,10 @@ class DataSiswaController extends Controller
         $file = $request->importexcel;
         Excel::import(new SiswaImport, $file);
         return redirect('/siswa')->with('success','Data berhasil di upload');
+    }
+    public function exportDataSiswa(Request $request)
+    {
+        $siswa = Siswa::all();
+        return Excel::download(new SiswaExport($siswa), 'data-siswa.xlsx');
     }
 }
