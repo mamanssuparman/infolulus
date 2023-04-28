@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Exports\KelasExport;
+use App\Imports\KelasImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DataKelasController extends Controller
 {
@@ -75,11 +78,18 @@ class DataKelasController extends Controller
             $validasi = $request->validate([
                 'id'        => 'required'
             ]);
-            Kelas::where('id',$request->id)->delete();
-            $dataSuccess = [
-                'statuscode'    => 200,
-                'data'          => 'Data berhasil di hapus'
-            ];
+            $prosHapus = Kelas::where('id',$request->id)->delete();
+            if($prosHapus){
+                $dataSuccess = [
+                    'statuscode'    => 200,
+                    'data'          => 'Data berhasil di hapus'
+                ];
+            } else {
+                $dataSuccess = [
+                    'statuscode'    => 404,
+                    'data'          => 'Data gagal di hapus.!'
+                ];
+            }
             return response()->json(['jsonData'=> $dataSuccess]);
         } catch (\Throwable $th) {
             $dataError = [
@@ -113,5 +123,17 @@ class DataKelasController extends Controller
             ];
             return response()->json(['jsonData'=> $dataError]);
         }
+    }
+    public function importDataKelas(Request $request)
+    {
+        $file = $request->importexcel;
+        Excel::import(new KelasImport, $file);
+        return redirect('/kelas')->with('success', 'Data berhasil di import');
+        dd($file);
+    }
+    public function exportDataKelas(Request $request)
+    {
+        $kelas = Kelas::all();
+        return Excel::download(new KelasExport($kelas), 'data-kelas.xlsx');
     }
 }

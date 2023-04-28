@@ -10,7 +10,7 @@
         </li><!-- End Dashboard Nav -->
         <li class="nav-item">
             <a class="nav-link {{ $breadcrumb1 == 'Data Kelas' ? '' : 'collapsed' }}" href="/kelas">
-                <i class="bi bi-person-circle"></i>
+                <i class="bi bi-bank2"></i>
                 <span>Data Kelas</span>
             </a>
         </li><!-- End Data Siswa Nav -->

@@ -6,7 +6,8 @@
 
                 <div class="card">
                     <div class="card-header">
-
+                        <button onclick="showModalImport()" class="btn btn-outline-success btn-md"><i class="bi bi-download"></i> Import Data Kelas</button>
+                        <a href="{{ url('') }}/kelas/export" class="btn btn-outline-success btn-md"><i class="bi bi-upload"></i> Export data Kelas</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -60,6 +61,33 @@
             </div>
           </div>
         </div>
+    </div>
+    {{-- Modal Import Kelas --}}
+    <div class="modal fade" id="modalImport" tabindex="-1">
+        <form action="/kelas/import-data" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-exclamation-triangle"></i> Import Data Kelas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    <label for="">Import data Kelas</label>
+                    <input type="file" name="importexcel" id="importexcel" class="form-control" required>
+                    <hr>
+                    <small class="text-danger">Import data Kelas sesuai dengan format yang sudah di tentukan</small>
+                    <hr>
+                    <a href="{{ asset('format-import-kelas.xlsx') }}" class="btn btn-outline-primary btn-xs"><i class="bi bi-download"></i> Download format di sini.!</a>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Close</button>
+                <button type="submit" class="btn btn-primary" ><i class="bi bi-check2-circle"></i> Ya Import</button>
+                </div>
+            </div>
+            </div>
+        </form>
     </div>
 @endsection
 @push('addon-js')
@@ -159,6 +187,9 @@
                 success: function(res){
                     $('#verticalycentered').modal('hide')
                     defaultFunction()
+                },
+                error:function(jqXHR,textStatus, errorThrown){
+                    alert('Data kelas tidak dapat dihapus, karena masih berelasi dengan data siswa.!')
                 }
             })
         }
@@ -199,6 +230,9 @@
             $('#text-button-information').html('Tambah Data Kelas')
             $('#textKelas').val('')
             table.ajax.reload(null, false)
+        }
+        function showModalImport(){
+            $('#modalImport').modal('show')
         }
 </script>
 @endpush
