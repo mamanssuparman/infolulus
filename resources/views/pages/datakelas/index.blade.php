@@ -187,6 +187,9 @@
                 success: function(res){
                     $('#verticalycentered').modal('hide')
                     defaultFunction()
+                },
+                error:function(jqXHR,textStatus, errorThrown){
+                    alert('Data kelas tidak dapat dihapus, karena masih berelasi dengan data siswa.!')
                 }
             })
         }

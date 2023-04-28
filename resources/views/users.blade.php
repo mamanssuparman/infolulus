@@ -55,7 +55,7 @@
                     <div class="form-group mt-3">
                         @csrf
                         <input type="text" name="textNisn" id="textNisn" class="form-control"
-                            placeholder="Ex : 2021.19.00.000">
+                            placeholder="Contoh : 12345678">
                     </div>
                     <div>
                         <button href="#about" class="tombol-cek" id="tombol-check"> <i class="bi-search"></i> Cari</button>
@@ -100,10 +100,10 @@
                             Di bawah ini merupakan link sosial media kami
                         </p>
                         <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bi-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bi-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bi-instagram"></i></a>
-                            <a href="#"><i class="bi-youtube"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=100064902391481" class="facebook"><i class="bi-facebook"></i></a>
+                            <a href="https://www.tiktok.com/@smkn3banjar4?lang=en" class="tiktok" target="_blank"><i class="bi-tiktok"></i></a>
+                            <a href="https://www.instagram.com/smkn3banjar/" class="instagram" target="_blank"><i class="bi-instagram"></i></a>
+                            <a href="https://www.youtube.com/@smkn3banjar795" target="_blank"><i class="bi-youtube"></i></a>
                         </div>
                         <input type="hidden" name="baseU" id="baseU" value="{{ url('') }}">
                     </div>
@@ -165,10 +165,10 @@
                         <div class="row">
                             <table class="table table-responsive">
                                 <tr>
-                                    <td>NISN</td><td><div id="nisnAnda">${res.data.nisn}</div></td>
+                                    <td>NISN</td><td><div id="nisnAnda" style="text-align:left">: ${res.data.nisn}</div></td>
                                 </tr>
                                 <tr>
-                                    <td>Nama</td><td><div id="namaAnda">${res.data.namasiswa}</div></td>
+                                    <td>Nama</td><td><div id="namaAnda" style="text-align:left">: ${res.data.namasiswa}</div></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><a href="{{ asset('surat-lulus/${res.data.suratlulus}') }}" class="btn btn-sm btn-outline-primary" download><i class="bi bi-download"></i> Download Surat Keterangan</a></td>

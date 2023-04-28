@@ -78,11 +78,18 @@ class DataKelasController extends Controller
             $validasi = $request->validate([
                 'id'        => 'required'
             ]);
-            Kelas::where('id',$request->id)->delete();
-            $dataSuccess = [
-                'statuscode'    => 200,
-                'data'          => 'Data berhasil di hapus'
-            ];
+            $prosHapus = Kelas::where('id',$request->id)->delete();
+            if($prosHapus){
+                $dataSuccess = [
+                    'statuscode'    => 200,
+                    'data'          => 'Data berhasil di hapus'
+                ];
+            } else {
+                $dataSuccess = [
+                    'statuscode'    => 404,
+                    'data'          => 'Data gagal di hapus.!'
+                ];
+            }
             return response()->json(['jsonData'=> $dataSuccess]);
         } catch (\Throwable $th) {
             $dataError = [

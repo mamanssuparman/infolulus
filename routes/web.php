@@ -28,6 +28,7 @@ Route::post('/cekData',[UserController::class, 'check']);
 Route::post('/downloadFile', [UserController::class, 'download']);
 Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard',[DashboardController::class, 'index']);
+    Route::post('/dashboard/getDataJson', [DashboardController::class, 'getDataJson']);
     Route::get('/kelas',[DataKelasController::class, 'index']);
     Route::post('/kelas/AddKelas',[DataKelasController::class, 'addkelas']);
     Route::post('/kelas/Hapus',[DataKelasController::class, 'hapus']);
@@ -43,6 +44,8 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/siswa/{id}/update',[DataSiswaController::class, 'update']);
     Route::get('/siswa/export', [DataSiswaController::class, 'exportDataSiswa']);
     Route::get('/profile',[ProfileController::class, 'index']);
+    Route::post('/profile/getDataJson',[ProfileController::class, 'getDataJson']);
+    Route::post('/profile/update',[ProfileController::class, 'update']);
 });
 Route::post('/getDataKelas',[DataKelasController::class, 'getDataKelas']);
 Route::post('/getDataSiswa', [DataSiswaController::class, 'getDataSiswa']);

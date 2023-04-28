@@ -89,7 +89,8 @@
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
-                                <form>
+                                <form id="formEditProfile">
+                                    @csrf
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                             Image</label>
@@ -108,14 +109,14 @@
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="fullName" type="text" class="form-control" id="fullName"
-                                                value="Maman Suparman">
+                                                value="">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <textarea name="about" class="form-control" id="about" style="height: 100px">Nama saya adalah Maman Suparman, ST atau lebih sering dikenal dengan Omen , saya saat ini menjadi seorang freelancer Software Developer dan juga sebagai CEO pada sebuah Software House yaitu OmenSoft</textarea>
+                                            <textarea name="about" class="form-control" id="about" style="height: 100px"></textarea>
                                         </div>
                                     </div>
 
@@ -123,47 +124,47 @@
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">Perusahaan</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="company" type="text" class="form-control" id="company"
-                                                value="OmenSoft">
+                                                value="">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="job" type="text" class="form-control" id="Job"
-                                                value="Full Stack Web Developer">
+                                            <input name="Job" type="text" class="form-control" id="Job"
+                                                value="">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="country" type="text" class="form-control" id="Country"
-                                                value="Indonesia">
+                                            <input name="Country" type="text" class="form-control" id="Country"
+                                                value="">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="Address"
-                                                value="Dusun Cikawung RT. 28 RW. 07 Desa Cintaratu Kecamatan Lakbok Kabupaten Ciamis">
+                                            <input name="Address" type="text" class="form-control" id="Address"
+                                                value="">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phone" type="text" class="form-control" id="Phone"
-                                                value="+62 82240 6000 70">
+                                            <input name="Phone" type="text" class="form-control" id="Phone"
+                                                value="">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email" class="form-control" id="Email"
-                                                value="omenartcorp@gmail.com">
+                                            <input name="Email" type="email" class="form-control" id="Email"
+                                                value="">
                                         </div>
                                     </div>
 
@@ -204,7 +205,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <button type="button" class="btn btn-primary" id="btnSaveChange">Save Changes</button>
                                     </div>
                                 </form><!-- End Profile Edit Form -->
 
@@ -257,3 +258,41 @@
         </div>
     </section>
 @endsection
+@push('addon-js')
+    <script type="text/javascript">
+        $.ajax({
+            url: '{{ url('') }}/profile/getDataJson',
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+                _token: $('input[name="_token"]').val()
+            },
+            success: function(res){
+                console.log(res)
+                if(res.statuscode == 200){
+                   $('#fullName').val(res.data.name)
+                   $('#about').val(res.data.about)
+                   $('#company').val(res.data.perusahaan)
+                   $('#Job').val(res.data.job)
+                   $('#Country').val(res.data.country)
+                   $('#Address').val(res.data.address)
+                   $('#Phone').val(res.data.phone)
+                   $('#Email').val(res.data.email)
+                   $('#Email').prop('disabled', true)
+                }
+            }
+        })
+        // On Clik SaveChange Edit Profile
+        $('#btnSaveChange').on('click', function(){
+            $.ajax({
+                url: '{{ url('') }}/profile/update',
+                type: 'POST',
+                dataType: 'JSON',
+                data: $('#formEditProfile').serialize(),
+                success: function(res){
+                    console.log(res)
+                }
+            })
+        })
+    </script>
+@endpush
